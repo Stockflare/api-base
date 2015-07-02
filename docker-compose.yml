@@ -1,0 +1,19 @@
+database:
+  image: mysql
+  ports:
+    - "3306"
+  environment:
+    MYSQL_ROOT_PASSWORD: password
+    MYSQL_DATABASE: stockflare
+stockflare:
+  build: .
+  command: puma
+  environment:
+    PORT: 2345
+    RACK_ENV: development
+  ports:
+    - "2345:2345"
+  volumes:
+    - .:/bruw
+  links:
+    - database

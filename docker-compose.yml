@@ -7,13 +7,13 @@ database:
     MYSQL_DATABASE: stockflare
 stockflare:
   build: .
-  command: puma
+  command: bundle exec puma
   environment:
     PORT: 2345
     RACK_ENV: development
   ports:
     - "2345:2345"
   volumes:
-    - .:/bruw
+    - .:/stockflare
   links:
     - database

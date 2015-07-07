@@ -11,6 +11,8 @@ gem 'dotenv'
 
 gem 'rom-sql'
 
+gem 'virtus'
+
 gem 'mysql2'
 
 gem 'grape', '~> 0.10.1'

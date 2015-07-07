@@ -126,6 +126,7 @@ DEPENDENCIES
   rake
   rom-sql
   rspec (~> 3.1)
+  virtus
   yajl-ruby
 
 BUNDLED WITH

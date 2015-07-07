@@ -1,7 +1,5 @@
 class API < Grape::API
 
-  # mount FooController => '/foo'
-
-  mount VariantController => '/'
+  mount AnimalController => '/'
 
 end

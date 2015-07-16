@@ -1,7 +1,11 @@
 require File.expand_path('../boot', __FILE__)
 
+# Core manages the loading of the system.
+#
+# @note This file should not be edited directly. It is extended and
+#   consumed via {Application} (./application.rb). All customizations
+#   and overrides should be written in that class.
 class Core
-
   ORM = ENV['DATABASE_ORM'].downcase.to_sym
 
   cattr_accessor :api
@@ -14,10 +18,10 @@ class Core
   self.config_dir = File.expand_path('../', __FILE__)
 
   cattr_accessor :orm_paths
-  self.orm_paths = %w{relations commands mappers}
+  self.orm_paths = %w(relations commands mappers)
 
   cattr_accessor :load_paths
-  self.load_paths = %w{models entities controllers}
+  self.load_paths = %w(models entities controllers)
 
   def self.connect!
     ROM.setup(Core::ORM, ENV['DATABASE_CONNECTION'])
@@ -26,12 +30,10 @@ class Core
 
   def self.load!
     ActiveSupport::Dependencies.autoload_paths += app_load_paths
-    self.load_orm
-    self.connect!
-    require self.api
+    load_orm
+    connect!
+    require api
   end
-
-  private
 
   def self.load_orm
     orm_paths.each do |path|
@@ -43,5 +45,4 @@ class Core
   def self.app_load_paths
     load_paths.collect { |l| "app/#{l}" }
   end
-
 end

@@ -11,10 +11,11 @@ Airborne.configure do |config|
   config.rack_app = API
 end
 
-Dir["#{File.expand_path('../', __FILE__)}/factories/**/*.rb"].each {|f| require f}
+Dir["#{File.expand_path('../', __FILE__)}/factories/**/*.rb"].each do |f|
+  require f
+end
 
 RSpec.configure do |config|
-
   config.include FactoryGirl::Syntax::Methods
 
   config.expect_with :rspec do |expectations|
@@ -40,5 +41,4 @@ RSpec.configure do |config|
   config.after(:each) do
     DatabaseCleaner.clean
   end
-
 end
